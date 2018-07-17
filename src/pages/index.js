@@ -5,13 +5,13 @@ export default ({ data }) => {
   return (
     <ul>
       {
-        data.site.siteMetadata.categories.map((category, idx) => {
+        data.allWordpressCategory.edges.map(({ node }, idx) => {
+
           return (
             <li key={idx}>
-              <Link to={category}>
+              <Link to={node.name.toLowerCase()}>
                 <div>
-                  <span>{category}</span>
-                  <span>{category.recipeCount}</span>
+                  <span>{node.name}</span>
                 </div>
               </Link>
             </li>
@@ -24,9 +24,11 @@ export default ({ data }) => {
 
 export const query = graphql`
   query IndexQuery {
-    site {
-      siteMetadata {
-        categories
+    allWordpressCategory(filter: {name: {ne: "Uncategorized"}}) {
+      edges {
+        node {
+          name
+        }
       }
     }
   }

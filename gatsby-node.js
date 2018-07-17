@@ -26,41 +26,42 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        site {
-          siteMetadata {
-            categories
-          }
-        }
-        allMarkdownRemark {
+        allWordpressCategory(filter: {name: {ne: "Uncategorized"}}) {
           edges {
             node {
-              fields {
-                slug
+              name
+            }
+          }
+        }
+        allWordpressPost {
+          edges {
+            node {
+              slug
+              categories {
+                name
               }
             }
           }
         }
       }
     `).then(result => {
-      result.data.site.siteMetadata.categories.forEach((category) => {
-        const categoryRegex = `(${category})`;
-        console.log(categoryRegex)
-        const regex = new RegExp(categoryRegex);
+      result.data.allWordpressCategory.edges.forEach(({ node }) => {
         createPage({
-          path: `/${category}/`,
+          path: `/${node.name.toLowerCase()}/`,
           component: path.resolve(`./src/templates/category.js`),
           context: {
-            regex
+            category: node.name
           }
         })
       })
-      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      result.data.allWordpressPost.edges.forEach(({ node }) => {
+        const recipePath = `/${node.categories[0].name.toLowerCase()}/${node.slug}/`
         createPage({
-          path: node.fields.slug,
+          path: recipePath,
           component: path.resolve(`./src/templates/recipe.js`),
           context: {
             // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.fields.slug,
+            slug: node.slug,
           },
         })
       })
