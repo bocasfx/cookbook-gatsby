@@ -2,8 +2,25 @@ import React from 'react';
 import Link from 'gatsby-link';
 
 const categories = [
+  'antojitos',
+  'appetizers',
+  'bread',
   'breakfast',
+  'cakes',
+  'dessert',
+  'enchiladas',
+  'fish',
+  'flatbreads',
+  'meat',
+  'moles',
+  'pasta',
+  'rice',
+  'poultry',
+  'preserves',
+  'salads',
   'salsas',
+  'soups',
+  'veggies',
 ];
 
 const renderCategories = () => {

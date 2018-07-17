@@ -1,17 +1,18 @@
-import React from "react";
+import React from 'react';
+import Link from 'gatsby-link'
 
 export default ({ data }) => {
   console.log(data);
   return (
     <div>
       {data.allMarkdownRemark.edges.map(({ node }) => (
-        <div key={node.id}>
+        <Link to={node.fields.slug} key={node.id}>
           <h3>
-            {node.frontmatter.title}{" "}
+            {node.frontmatter.title}{' '}
             <span>— {node.frontmatter.date}</span>
           </h3>
           <p>{node.excerpt}</p>
-        </div>
+        </Link>
       ))}
     </div>
   );
@@ -24,6 +25,9 @@ export const query = graphql`
         node {
           excerpt(pruneLength: 250)
           id
+          fields {
+            slug
+          }
           frontmatter {
             title
             date(formatString: "MMMM DD, YYYY")
