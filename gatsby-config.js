@@ -1,6 +1,27 @@
 module.exports = {
   siteMetadata: {
     title: 'Cookbook',
+    categories: [
+      'antojitos',
+      'appetizers',
+      'bread',
+      'breakfast',
+      'cakes',
+      'dessert',
+      'enchiladas',
+      'fish',
+      'flatbreads',
+      'meat',
+      'moles',
+      'pasta',
+      'rice',
+      'poultry',
+      'preserves',
+      'salads',
+      'salsas',
+      'soups',
+      'veggies',
+    ],
   },
   plugins: [
     'gatsby-plugin-react-helmet',

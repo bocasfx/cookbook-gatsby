@@ -26,6 +26,11 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
+        site {
+          siteMetadata {
+            categories
+          }
+        }
         allMarkdownRemark {
           edges {
             node {
@@ -37,6 +42,18 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         }
       }
     `).then(result => {
+      result.data.site.siteMetadata.categories.forEach((category) => {
+        const categoryRegex = `(${category})`;
+        console.log(categoryRegex)
+        const regex = new RegExp(categoryRegex);
+        createPage({
+          path: `/${category}/`,
+          component: path.resolve(`./src/templates/category.js`),
+          context: {
+            regex
+          }
+        })
+      })
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         createPage({
           path: node.fields.slug,
