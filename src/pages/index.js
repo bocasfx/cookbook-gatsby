@@ -5,14 +5,15 @@ import styled from 'styled-components'
 const List = styled.ul`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
 `
 
 const Item = styled.li`
-  margin-right: 16px;
   width: 200px;
   height: 200px;
   padding: 32px;
-  border: 1px solid #666;
+  border: 1px solid #ccc;
 
   &:hover {
     background: #eee;
@@ -20,12 +21,15 @@ const Item = styled.li`
 `
 
 const Name = styled.div`
-  font-size: 1.5rem;
+  font-size: 1rem;
 `
 
 export default ({ data }) => {
+  if (!data) {
+    return null
+  }
   return (
-    <List className="recipes">
+    <List className='recipes'>
       {data.allWordpressCategory.edges.map(({ node: category }, idx) => {
         return (
           <Link to={category.name.toLowerCase()} key={idx}>
@@ -43,7 +47,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query IndexQuery {
-    allWordpressCategory(filter: { name: { ne: "Uncategorized" } }) {
+    allWordpressCategory(filter: {name: {ne: "Uncategorized"}}, sort: {fields: [name], order: ASC}) {
       edges {
         node {
           name
