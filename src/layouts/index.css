@@ -7,11 +7,6 @@ a {
   text-decoration: unset;
 }
 
-a:hover {
-  text-decoration: underline;
-  background-color: #ccc;
-}
-
 li {
   list-style-type: none;
 }

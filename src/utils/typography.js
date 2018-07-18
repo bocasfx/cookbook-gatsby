@@ -1,17 +1,17 @@
 import Typography from 'typography';
 
 const typography = new Typography({
-  baseFontSize: '22px',
+  baseFontSize: '16px',
   googleFonts: [
     {
-      name: 'Amatic SC',
+      name: 'Montserrat',
       styles: [
         '400',
       ],
     },
   ],
-  bodyFontFamily: ['Amatic SC', 'sans-serif'],
-  headerFontFamily: ['Amatic SC', 'sans-serif'],
+  bodyFontFamily: ['Montserrat', 'sans-serif'],
+  headerFontFamily: ['Montserrat', 'sans-serif'],
   headerWeight: 'normal',
 });
 

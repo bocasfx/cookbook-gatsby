@@ -5,7 +5,7 @@ export default ({ data }) => {
   return (
     <div>
       <h1>{recipe.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: recipe.content }} />
+      <div className="recipe" dangerouslySetInnerHTML={{ __html: recipe.content }} />
     </div>
   );
 };
