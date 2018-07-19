@@ -2,7 +2,10 @@ import React from 'react'
 import Ingredients from '../components/ingredients'
 import Images from '../components/images'
 import Steps from '../components/steps'
+import Footnotes from '../components/footnotes'
 import PropTypes from 'prop-types'
+import RecipeHeader from '../components/recipe-header';
+import Description from '../components/description';
 
 const Recipe = ({ data }) => {
   if (!data.allPrismicRecipe) {
@@ -13,14 +16,12 @@ const Recipe = ({ data }) => {
   return (
     <div>
       <h1>{recipe.title.text}</h1>
-      <div>
-        <span>Published on:</span>
-        <span>{node.last_publication_date}</span>
-      </div>
-      <div dangerouslySetInnerHTML={{ __html: recipe.description.html }} />
+      <RecipeHeader date={node.last_publication_date} />
+      <Description description={recipe.description.html} />
       <Images images={recipe.images} />
       <Ingredients ingredients={recipe.ingredients} />
       <Steps steps={recipe.steps} />
+      <Footnotes footnotes={recipe.footnotes.html} />
     </div>
   )
 }
@@ -57,6 +58,9 @@ export const query = graphql`
               step {
                 html
               }
+            }
+            footnotes {
+              html
             }
           }
         }
