@@ -11,7 +11,7 @@ const Footnotes = ({ footnotes }) => {
 }
 
 Footnotes.propTypes = {
-  footnotes: PropTypes.object,
+  footnotes: PropTypes.string
 }
 
 export default Footnotes
