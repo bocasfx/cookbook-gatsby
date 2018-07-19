@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Ingredients = ({ ingredients }) => {
   return (
-    <div>
+    <section>
       <h1>Ingredients</h1>
       {ingredients.map((ingredient, idx) => {
         return (
@@ -13,7 +13,7 @@ const Ingredients = ({ ingredients }) => {
           </div>
         )
       })}
-    </div>
+    </section>
   )
 }
 

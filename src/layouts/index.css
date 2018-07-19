@@ -10,3 +10,11 @@ a {
 li {
   list-style-type: none;
 }
+
+section {
+  margin-top: 3rem;
+}
+
+img {
+  margin-bottom: 0;
+}

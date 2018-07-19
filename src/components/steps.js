@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 const Steps = ({ steps }) => {
   return (
-    <div>
+    <section>
       <h1>Steps</h1>
       {steps.map((step, idx) => {
         return <div dangerouslySetInnerHTML={{ __html: step.step.html }} key={idx}/>
       })}
-    </div>
+    </section>
   )
 }
 

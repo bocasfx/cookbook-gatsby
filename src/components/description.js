@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 const Description = ({ description }) => {
   return (
-    <div>
+    <section>
       <h1>Description</h1>
       <div dangerouslySetInnerHTML={{ __html: description }} />
-    </div>
+    </section>
   )
 }
 

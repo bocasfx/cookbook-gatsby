@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 const Footnotes = ({ footnotes }) => {
   return (
-    <div>
+    <section>
       <h1>Footnotes</h1>
       <div dangerouslySetInnerHTML={{ __html: footnotes }} />
-    </div>
+    </section>
   )
 }
 

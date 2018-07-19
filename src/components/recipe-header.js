@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 
 const RecipeHeader = ({ date }) => {
   return (
-    <div>
+    <section>
       <span>Published on:</span>
       <span>{date}</span>
-    </div>
+    </section>
   )
 }
 
