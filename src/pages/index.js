@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const List = styled.ul`
   display: flex;
@@ -24,18 +25,18 @@ const Name = styled.div`
   font-size: 1rem;
 `
 
-export default ({ data }) => {
+const IndexPage = ({ data }) => {
   if (!data) {
     return null
   }
   return (
     <List className='recipes'>
-      {data.allWordpressCategory.edges.map(({ node: category }, idx) => {
+      {data.allPrismicCategory.edges.map(({ node: { data: { category } } }, idx) => {
         return (
-          <Link to={category.name.toLowerCase()} key={idx}>
+          <Link to={category.toLowerCase()} key={idx}>
             <Item>
               <div>
-                <Name>{category.name}</Name>
+                <Name>{category}</Name>
               </div>
             </Item>
           </Link>
@@ -45,12 +46,20 @@ export default ({ data }) => {
   )
 }
 
+IndexPage.propTypes = {
+  data: PropTypes.object.isRequired
+}
+
+export default IndexPage
+
 export const query = graphql`
   query IndexQuery {
-    allWordpressCategory(filter: {name: {ne: "Uncategorized"}}, sort: {fields: [name], order: ASC}) {
+    allPrismicCategory(sort: {fields: [data___category], order: ASC}) {
       edges {
         node {
-          name
+          data {
+            category
+          }
         }
       }
     }

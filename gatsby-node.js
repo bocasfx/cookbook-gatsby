@@ -26,42 +26,55 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allWordpressCategory(filter: {name: {ne: "Uncategorized"}}) {
+        allPrismicCategory(sort: {fields: [data___category], order: ASC}) {
           edges {
             node {
-              name
+              data {
+                category
+              }
             }
           }
         }
-        allWordpressPost {
+        allPrismicRecipe {
           edges {
             node {
-              slug
-              categories {
-                name
+              uid
+              last_publication_date
+              data {
+                title {
+                  text
+                }
+                category {
+                  document {
+                    data {
+                      category
+                    }
+                  }
+                }
               }
             }
           }
         }
       }
     `).then(result => {
-      result.data.allWordpressCategory.edges.forEach(({ node }) => {
+      result.data.allPrismicCategory.edges.forEach(({ node }) => {
         createPage({
-          path: `/${node.name.toLowerCase()}/`,
+          path: `/${node.data.category.toLowerCase()}/`,
           component: path.resolve(`./src/templates/category.js`),
           context: {
-            category: node.name
+            category: node.data.category
           }
         })
       })
-      result.data.allWordpressPost.edges.forEach(({ node }) => {
-        const recipePath = `/${node.categories[0].name.toLowerCase()}/${node.slug}/`
+      result.data.allPrismicRecipe.edges.forEach(({ node }) => {
+        const category = node.data.category.document[0].data.category.toLowerCase()
+        const recipePath = `/${category}/${node.uid}/`
         createPage({
           path: recipePath,
           component: path.resolve(`./src/templates/recipe.js`),
           context: {
             // Data passed to context is available in page queries as GraphQL variables.
-            slug: node.slug,
+            slug: node.uid
           },
         })
       })
