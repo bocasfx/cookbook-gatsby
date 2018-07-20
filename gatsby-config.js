@@ -14,7 +14,7 @@ module.exports = {
       resolve: 'gatsby-source-prismic',
       options: {
         repositoryName: 'munchtime',
-        accessToken: 'MC5XMUNLckNFQUFDRUFmZk1t.ABLvv71QEO-_ve-_vS5Le--_vXpe77-977-9XzXvv71SFlMfce-_vXPvv70SH--_ve-_vWgO',
+        accessToken: 'MC5XMUhQVWlVQUFDZ0FHdkxv.77-9C2Dvv71peC9sF--_ve-_vQrvv71dM--_ve-_ve-_vUJc77-9GO-_vRgM77-977-9CAlmZO-_vQ',
         linkResolver: ({ node, key, value }) => doc => {
           // Your link resolver
         },

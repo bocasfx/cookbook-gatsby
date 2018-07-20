@@ -7,6 +7,14 @@ a {
   text-decoration: unset;
 }
 
+a:hover {
+  color: crimson;
+}
+
+ul {
+  margin-left: 0;
+}
+
 li {
   list-style-type: none;
 }
