@@ -9,9 +9,15 @@ const typography = new Typography({
         '400',
       ],
     },
+    {
+      name: 'Knewave',
+      styles: [
+        '400',
+      ],
+    },
   ],
   bodyFontFamily: ['Montserrat', 'sans-serif'],
-  headerFontFamily: ['Montserrat', 'sans-serif'],
+  headerFontFamily: ['Knewave', 'cursive'],
   headerWeight: 'normal',
 });
 

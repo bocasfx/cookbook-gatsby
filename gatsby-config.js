@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Cookbook'
+    title: 'Munchtime'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -13,7 +13,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-prismic',
       options: {
-        repositoryName: 'cookbookpalacios',
+        repositoryName: 'munchtime',
         accessToken: 'MC5XMUNLckNFQUFDRUFmZk1t.ABLvv71QEO-_ve-_vS5Le--_vXpe77-977-9XzXvv71SFlMfce-_vXPvv70SH--_ve-_vWgO',
         linkResolver: ({ node, key, value }) => doc => {
           // Your link resolver
