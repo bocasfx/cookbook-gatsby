@@ -56,7 +56,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           }
         }
       }
-    `).then(result => {
+    `).then((result) => {
+      if (!result.data) {
+        return resolve()
+      }
       result.data.allPrismicCategory.edges.forEach(({ node }) => {
         createPage({
           path: `/${node.data.category.toLowerCase()}/`,
@@ -75,7 +78,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           context: {
             // Data passed to context is available in page queries as GraphQL variables.
             slug: node.uid
-          },
+          }
         })
       })
       resolve()

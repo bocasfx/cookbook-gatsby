@@ -1,28 +1,19 @@
 import React from 'react'
-import Link from 'gatsby-link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import CategoryCard from '../components/category-card'
 
-const List = styled.ul`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`
+const GridContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr [col-start]);
+  grid-auto-rows: 300px;
+  grid-column-gap: 24px;
+  row-gap: 24px;
+  margin: 64px 32px;
 
-const Item = styled.li`
-  width: 200px;
-  height: 200px;
-  padding: 32px;
-  border: 1px solid #ccc;
-
-  &:hover {
-    background: #eee;
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr [col-start];
   }
-`
-
-const Name = styled.div`
-  font-size: 1rem;
 `
 
 const IndexPage = ({ data }) => {
@@ -30,19 +21,20 @@ const IndexPage = ({ data }) => {
     return null
   }
   return (
-    <List className='recipes'>
-      {data.allPrismicCategory.edges.map(({ node: { data: { category } } }, idx) => {
+    <GridContainer>
+      {data.allPrismicCategory.edges.map(({ node }, idx) => {
+        const category = node.data.category
+        const imageUrl = node.data.image.url
         return (
-          <Link to={category.toLowerCase()} key={idx}>
-            <Item>
-              <div>
-                <Name>{category}</Name>
-              </div>
-            </Item>
-          </Link>
+          <CategoryCard
+            category={category}
+            url={category.toLowerCase()}
+            imageUrl={imageUrl}
+            key={idx}
+          />
         )
       })}
-    </List>
+    </GridContainer>
   )
 }
 
@@ -54,11 +46,14 @@ export default IndexPage
 
 export const query = graphql`
   query IndexQuery {
-    allPrismicCategory(sort: {fields: [data___category], order: ASC}) {
+    allPrismicCategory(sort: { fields: [data___category], order: ASC }) {
       edges {
         node {
           data {
             category
+            image {
+              url
+            }
           }
         }
       }

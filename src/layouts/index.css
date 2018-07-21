@@ -4,11 +4,15 @@ body {
 
 a {
   color: dimgray;
-  text-decoration: unset;
+  text-decoration: none;
 }
 
-li {
-  list-style-type: none;
+a:hover {
+  color: crimson;
+}
+
+h1 {
+  color: crimson;
 }
 
 section {

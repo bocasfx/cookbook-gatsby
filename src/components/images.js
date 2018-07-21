@@ -5,7 +5,7 @@ const Images = ({ images }) => {
   return (
     <section>
       {images.map((image, idx) => {
-        return <img src={image.image.url} key={idx} width='300' />
+        return <img src={image.image.url} key={idx} width='500' />
       })}
     </section>
   )
