@@ -5,43 +5,33 @@ import styled from 'styled-components'
 
 const setBackground = props => (props.url ? `url(${props.url});` : 'white')
 
-const Image = styled.div`
+const Card = styled.div`
   border: 1px solid #ccc;
+  display: grid;
+  grid-template-rows: 80% 20%;
+  height: 100%;
+`
+
+const Image = styled.div`
   background: ${setBackground};
   background-size: cover;
-  width: 100%;
-  height: 100%;
-  position: relative;
-
-  &:hover {
-    background-color: #f8f8f8;
-  }
-
-  a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 16px;
-  }
+  background-position: 50%;
 `
 
 const Footer = styled.div`
-  position: absolute;
-  bottom: 0;
-  background: white;
-  width: 100%;
+  padding: 16px;
+  border-top: 1px solid #ccc;
+  text-align: right;
 `
 
 const CategoryCard = ({ category, url, imageUrl }) => {
   return (
-    <div>
-      <Image url={imageUrl}>
-        <Link to={url} />
-        <Footer>
-          <Link to={url}>{category}</Link>
-        </Footer>
-      </Image>
-    </div>
+    <Link to={url}>
+      <Card>
+        <Image url={imageUrl} />
+        <Footer>{category}</Footer>
+      </Card>
+    </Link>
   )
 }
 

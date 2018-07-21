@@ -5,7 +5,7 @@ const typography = new Typography({
   googleFonts: [
     {
       name: 'Montserrat',
-      styles: ['400']
+      styles: ['400', '700']
     },
     {
       name: 'Permanent Marker',

@@ -15,8 +15,7 @@ const Recipe = ({ data }) => {
   const recipe = node.data
   return (
     <div>
-      <h1>{recipe.title.text}</h1>
-      <RecipeHeader date={node.last_publication_date} />
+      <RecipeHeader title={recipe.title.text} date={node.last_publication_date} />
       <Description description={recipe.description.html} />
       <Images images={recipe.images} />
       <Ingredients ingredients={recipe.ingredients} />

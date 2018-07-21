@@ -9,7 +9,11 @@ const GridContainer = styled.div`
   grid-auto-rows: 300px;
   grid-column-gap: 24px;
   row-gap: 24px;
-  margin: 0 32px;
+  margin: 64px 32px;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr [col-start];
+  }
 `
 
 const IndexPage = ({ data }) => {

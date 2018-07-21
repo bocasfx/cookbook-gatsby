@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 const Description = ({ description }) => {
   return (
     <section>
-      <h1>Description</h1>
       <div dangerouslySetInnerHTML={{ __html: description }} />
     </section>
   )
