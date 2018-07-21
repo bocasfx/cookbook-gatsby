@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 const Inner = styled.div`
   margin: 0 auto;
   max-width: 960px;
-  padding: 1rem 1.0875rem;
+  padding: 1rem 0;
 `
 
 const H1 = styled.h1`
