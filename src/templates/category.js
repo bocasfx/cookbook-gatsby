@@ -1,13 +1,6 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
-
-const RecipeDate = styled.span`
-  color: #ccc;
-  font-size: 0.8rem;
-  margin-left: 32px;
-`
+import RecipeCard from '../components/recipe-card'
 
 const Category = ({ data }) => {
   if (!data.allPrismicRecipe) {
@@ -15,15 +8,23 @@ const Category = ({ data }) => {
   }
   return (
     <div>
-      {data.allPrismicRecipe.edges.map(({ node }) => {
+      {data.allPrismicRecipe.edges.map(({ node }, idx) => {
+        console.log(node.data)
         const category = node.data.category.document[0].data.category.toLowerCase()
         const url = `/${category}/${node.uid}/`
+        const imageUrl = node.data.images[0].image.url
+        const date = node.last_publication_date
+        const title = node.data.title.text
+        const description = node.data.description.text
         return (
-          <Link to={url} key={node.uid}>
-            <h3>
-              {node.data.title.text} <RecipeDate>({node.last_publication_date})</RecipeDate>
-            </h3>
-          </Link>
+          <RecipeCard
+            url={url}
+            key={idx}
+            title={title}
+            date={date}
+            imageUrl={imageUrl}
+            description={description}
+          />
         )
       })}
     </div>
@@ -38,13 +39,27 @@ export default Category
 
 export const query = graphql`
   query CategoryQuery($category: String!) {
-    allPrismicRecipe(filter: {data:{category:{document: {data: {category: {eq: $category}}}}}}) {
+    allPrismicRecipe(
+      filter: {
+        data: {
+          category: { document: { data: { category: { eq: $category } } } }
+        }
+      }
+    ) {
       edges {
         node {
           uid
           last_publication_date
           data {
             title {
+              text
+            }
+            images {
+              image {
+                url
+              }
+            }
+            description {
               text
             }
             category {

@@ -12,6 +12,10 @@ const Inner = styled.div`
   margin: 0 auto;
   max-width: 960px;
   padding: 1rem 0;
+
+  @media (max-width: 1024px) {
+    margin: 0 32px;
+  }
 `
 
 const H1 = styled.h1`
