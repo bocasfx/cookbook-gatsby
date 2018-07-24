@@ -10,7 +10,7 @@ const GridContainer = styled.div`
   grid-column-gap: 24px;
   row-gap: 24px;
 
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     grid-template-columns: 1fr [col-start];
   }
 `

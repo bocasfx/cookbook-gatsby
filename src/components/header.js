@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import SearchButton from './search-button'
 
 const Wrapper = styled.div`
   background: crimson;
@@ -12,6 +13,12 @@ const Inner = styled.div`
   margin: 0 auto;
   max-width: 960px;
   padding: 1rem 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+  @media (max-width: 1024px) {
+    margin: 0 32px;
+  }
 `
 
 const H1 = styled.h1`
@@ -36,6 +43,7 @@ const Header = ({ siteTitle }) => (
       <H1>
         <Link to='/'>{siteTitle}!</Link>
       </H1>
+      <SearchButton />
     </Inner>
   </Wrapper>
 )
