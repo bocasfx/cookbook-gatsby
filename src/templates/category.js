@@ -9,7 +9,6 @@ const Category = ({ data }) => {
   return (
     <div>
       {data.allPrismicRecipe.edges.map(({ node }, idx) => {
-        console.log(node.data)
         const category = node.data.category.document[0].data.category.toLowerCase()
         const url = `/${category}/${node.uid}/`
         const imageUrl = node.data.images[0].image.url
