@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Index } from 'elasticlunr'
 import Link from 'gatsby-link'
-import qs from 'query-string'
+import parse from 'url-parse'
 
 export default class Search extends Component {
   constructor(props) {
     super(props)
-    const query = qs.parse(props.location.search).term
+    const query = parse(props.location.search).query.split('=')[1]
+    console.log(query)
     this.state = {
       query,
       results: []
