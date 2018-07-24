@@ -1,32 +1,42 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Index } from 'elasticlunr'
 import Link from 'gatsby-link'
+import qs from 'query-string'
 
 export default class Search extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
+    const query = qs.parse(props.location.search).term
     this.state = {
-      query: ``,
+      query,
       results: []
     }
   }
 
   static propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    location: PropTypes.object
   }
 
-  render () {
+  componentWillMount() {
+    if (this.state.query && this.state.query.length) {
+      this.search()
+    }
+  }
+
+  render() {
     return (
       <div>
-        <input type='text' value={this.state.query} onChange={this.search} />
+        <input type="text" value={this.state.query} onChange={this.search} />
         <ul>
           {this.state.results.map((page, idx) => {
             const url = `/${page.category}/${page.title.toLowerCase()}`
             return (
               <li key={idx}>
                 <Link to={url}>{page.title}</Link>
-              </li>)
+              </li>
+            )
           })}
         </ul>
       </div>
@@ -34,17 +44,32 @@ export default class Search extends Component {
   }
 
   getOrCreateIndex = () => {
-    return this.index ? this.index : Index.load(this.props.data.siteSearchIndex.index)
+    return this.index
+      ? this.index
+      : Index.load(this.props.data.siteSearchIndex.index)
   }
 
-  search = (evt) => {
-    const query = evt.target.value
+  search = evt => {
+    const query = evt && evt.target ? evt.target.value : this.state.query
+    const options = {
+      fields: {
+        title: {
+          expand: true
+        },
+        category: {
+          expand: true
+        },
+        description: {
+          expand: true
+        }
+      }
+    }
     this.index = this.getOrCreateIndex()
     this.setState({
       query,
       // Query the index with search string to get an [] of IDs
       results: this.index
-        .search(query)
+        .search(query, options)
         // Map over each ID and return the full document
         .map(({ ref }) => this.index.documentStore.getDoc(ref))
     })

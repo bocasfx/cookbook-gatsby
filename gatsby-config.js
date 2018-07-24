@@ -33,14 +33,15 @@ module.exports = {
       resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
       options: {
         // Fields to index
-        fields: ['title', 'uid', 'category'],
+        fields: ['title', 'uid', 'category', 'description'],
         // How to resolve each field's value for a supported node type
         resolvers: {
           // For any node of type MarkdownRemark, list how to resolve the fields' values
           PrismicRecipe: {
             title: node => node.data.title.text,
             uid: node => node.uid,
-            category: node => node.data.category.raw.uid
+            category: node => node.data.category.raw.uid,
+            description: node => node.data.description.text
           }
         }
       }

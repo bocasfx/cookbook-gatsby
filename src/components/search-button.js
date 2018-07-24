@@ -75,7 +75,6 @@ const Handle = styled.span`
 
 const searchTerm = (event) => {
   if (event.keyCode === 13) {
-    console.log('test')
     const searchUrl = `/search?term=${event.target.value}`
     push(searchUrl)
   }
