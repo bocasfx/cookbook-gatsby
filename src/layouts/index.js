@@ -7,7 +7,7 @@ import './index.css'
 
 const Children = styled.div`
   margin: 64px auto;
-  max-width: 960px;
+  max-width: 800px;
 
   @media (max-width: 1024px) {
     margin: 64px 32px;

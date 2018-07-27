@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 
 const Inner = styled.div`
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 800px;
   padding: 1rem 0;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -37,16 +37,25 @@ const H1 = styled.h1`
   }
 `
 
-const Header = ({ siteTitle }) => (
-  <Wrapper>
-    <Inner>
-      <H1>
-        <Link to='/'>{siteTitle}!</Link>
-      </H1>
-      <SearchButton />
-    </Inner>
-  </Wrapper>
-)
+const renderSearchButton = location => {
+  if (typeof window !== 'undefined' && window.location.pathname !== '/search') {
+    return <SearchButton />
+  }
+  return null
+}
+
+const Header = ({ siteTitle }) => {
+  return (
+    <Wrapper>
+      <Inner>
+        <H1>
+          <Link to='/'>{siteTitle}</Link>
+        </H1>
+        {renderSearchButton()}
+      </Inner>
+    </Wrapper>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string

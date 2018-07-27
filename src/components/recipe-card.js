@@ -17,9 +17,15 @@ const Card = styled.div`
   display: grid;
   grid-template-columns: 20% 80%;
   grid-column-gap: 24px;
+  margin-bottom: 48px;
 `
 
-const Image = styled.img`
+const Image = styled.div`
+  background: url(${props => props.url});
+  background-size: cover;
+  background-position: center;
+  max-width: 200px;
+  height: 150px;
 `
 
 const Info = styled.div`
@@ -34,7 +40,7 @@ const RecipeCard = ({ title, date, url, imageUrl, description }) => {
   return (
     <Link to={url}>
       <Card>
-        <Image src={imageUrl} />
+        <Image url={imageUrl} />
         <Info>
           <Title>{title}</Title>
           <Date>({date})</Date>

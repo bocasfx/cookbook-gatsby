@@ -14,7 +14,7 @@ const Category = ({ data }) => {
         const imageUrl = node.data.images[0].image.url
         const date = node.last_publication_date
         const title = node.data.title.text
-        const description = node.data.description.text
+        const description = node.data.description.text.slice(0, 300) + '...'
         return (
           <RecipeCard
             url={url}

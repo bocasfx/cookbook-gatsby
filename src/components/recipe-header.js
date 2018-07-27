@@ -10,15 +10,18 @@ const Title = styled.h1`
   margin-bottom: 4px;
 `
 
-const Date = styled.div`
+const DateContainer = styled.div`
   font-size: 0.7rem;
 `
 
 const RecipeHeader = ({ title, date }) => {
+  const formattedDate = new Date(date)
+  console.log(date)
+  const dateLabel = `${formattedDate.getDate()}-${formattedDate.getMonth()}-${formattedDate.getFullYear()}`
   return (
     <Header>
       <Title>{title}</Title>
-      <Date>Published on: {date}</Date>
+      <DateContainer>Published on: {dateLabel}</DateContainer>
     </Header>
   )
 }
