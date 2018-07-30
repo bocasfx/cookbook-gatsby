@@ -15,7 +15,7 @@ const Title = styled.h3`
 
 const Card = styled.div`
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 30% 70%;
   grid-column-gap: 24px;
   margin-bottom: 48px;
 `
@@ -37,7 +37,6 @@ const Description = styled.div`
 `
 
 const RecipeCard = ({ title, date, url, imageUrl, description }) => {
-  console.log(date)
   const formattedDate = new Date(date)
   const dateLabel = `${formattedDate.getDate()}-${formattedDate.getMonth()}-${formattedDate.getFullYear()}`
 

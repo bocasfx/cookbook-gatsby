@@ -6,7 +6,6 @@ import SearchButton from './search-button'
 
 const Wrapper = styled.div`
   background: crimson;
-  margin-bottom: 1.45rem;
 `
 
 const Inner = styled.div`

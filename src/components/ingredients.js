@@ -4,10 +4,11 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 10% 15% 85%;
+  grid-template-columns: 10% 15% 75%;
   width: 300px;
   margin-bottom: 8px;
   line-height: 1.5rem;
+  column-gap: 16px;
 `
 
 const Ingredients = ({ ingredients }) => {

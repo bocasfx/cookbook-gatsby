@@ -1,17 +1,20 @@
 import React, { Fragment } from 'react'
 import Ingredients from '../components/ingredients'
-import Images from '../components/images'
 import Steps from '../components/steps'
 import Footnotes from '../components/footnotes'
 import PropTypes from 'prop-types'
 import RecipeHeader from '../components/recipe-header'
 import Description from '../components/description'
+import ImageHeader from '../components/image-header'
 import styled from 'styled-components'
 
-const IngredientsContainer = styled.div`
-  display: grid;
-  grid-template-columns: 49% 49%;
-  column-gap: 2%;
+const Container = styled.div`
+  max-width: 700px;
+  margin: 0 auto 128px;
+
+  @media (max-width: 832px) {
+    padding: 0 16px;
+  }
 `
 
 const Recipe = ({ data }) => {
@@ -32,13 +35,13 @@ const Recipe = ({ data }) => {
   return (
     <Fragment>
       <RecipeHeader title={title} date={date} />
-      {(description && description.length > 0) && <Description description={description} />}
-      <IngredientsContainer>
+      <ImageHeader url={images[0].image.url} />
+      <Container>
+        {(description && description.length > 0) && <Description description={description} />}
         {(ingredients && ingredients.length > 0) && <Ingredients ingredients={ingredients} />}
-        {(images && images.length > 0) && <Images images={images} />}
-      </IngredientsContainer>
-      {(steps && steps.length > 0) && <Steps steps={steps} />}
-      {(footnotes && footnotes.length > 0) && <Footnotes footnotes={footnotes} />}
+        {(steps && steps.length > 0) && <Steps steps={steps} />}
+        {(footnotes && footnotes.length > 0) && <Footnotes footnotes={footnotes} />}
+      </Container>
     </Fragment>
   )
 }

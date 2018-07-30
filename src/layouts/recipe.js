@@ -4,33 +4,26 @@ import Helmet from 'react-helmet'
 import Header from '../components/header'
 import styled from 'styled-components'
 import './index.css'
-import ImageHeader from '../components/image-header'
 
 const Children = styled.div`
-  margin: 64px auto;
-  max-width: 700px;
-
-  @media (max-width: 832px) {
-    padding: 0 16px;
-  }
+  margin: 0 auto;
 `
 
-const Layout = (props, { children, data }) => {}
-console.log(props)
-return (
-  <div>
-    <Helmet
-      title={data.site.siteMetadata.title}
-      meta={[
-        { name: 'description', content: 'Munchtime!' },
-        { name: 'keywords', content: 'cooking, cookbook, recipes, food' }
-      ]}
-    />
-    <Header siteTitle={data.site.siteMetadata.title} shortTitle={data.site.siteMetadata.shortTitle} />
-    <ImageHeader url={data.images.image.url} />
-    <Children>{children()}</Children>
-  </div>
-)}
+const Layout = ({ children, data }) => {
+  return (
+    <div>
+      <Helmet
+        title={data.site.siteMetadata.title}
+        meta={[
+          { name: 'description', content: 'Munchtime!' },
+          { name: 'keywords', content: 'cooking, cookbook, recipes, food' }
+        ]}
+      />
+      <Header siteTitle={data.site.siteMetadata.title} shortTitle={data.site.siteMetadata.shortTitle} />
+      <Children>{children()}</Children>
+    </div>
+  )
+}
 
 Layout.propTypes = {
   children: PropTypes.func,
