@@ -6,25 +6,20 @@ const Image = styled.div`
   background: url(${props => props.url});
   background-size: cover;
   background-position: center;
-  box-shadow: 4px 4px 4px 0px rgba(204,204,204,1);
   width: 100%;
-  height: 100%;
+  height: 200px;
 `
 
-const Images = ({ images }) => {
+const Images = ({ url }) => {
   return (
     <section>
-      {images.map((image, idx) => {
-        return (
-          <Image url={image.image.url} key={idx} />
-        )
-      })}
+      <Image url={url} />
     </section>
   )
 }
 
 Images.propTypes = {
-  images: PropTypes.array.isRequired
+  url: PropTypes.string.isRequired
 }
 
 export default Images

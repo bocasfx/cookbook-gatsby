@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import Header from '../components/header'
 import styled from 'styled-components'
 import './index.css'
+import ImageHeader from '../components/image-header'
 
 const Children = styled.div`
   margin: 64px auto;
@@ -14,7 +15,9 @@ const Children = styled.div`
   }
 `
 
-const Layout = ({ children, data }) => (
+const Layout = (props, { children, data }) => {}
+console.log(props)
+return (
   <div>
     <Helmet
       title={data.site.siteMetadata.title}
@@ -24,9 +27,10 @@ const Layout = ({ children, data }) => (
       ]}
     />
     <Header siteTitle={data.site.siteMetadata.title} shortTitle={data.site.siteMetadata.shortTitle} />
+    <ImageHeader url={data.images.image.url} />
     <Children>{children()}</Children>
   </div>
-)
+)}
 
 Layout.propTypes = {
   children: PropTypes.func,
@@ -36,10 +40,23 @@ Layout.propTypes = {
 export default Layout
 
 export const query = graphql`
-  query SiteTitleQuery {
+  query RecipeTitleQuery {
     site {
       siteMetadata {
         title
+      }
+    }
+    allPrismicRecipe {
+      edges {
+        node {
+          data {
+            images {
+              image {
+                url
+              }
+            }
+          }
+        }
       }
     }
   }

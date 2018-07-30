@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 
-const Date = styled.span`
+const DateContainer = styled.span`
   color: #ccc;
   font-size: 0.8rem;
 `
@@ -37,13 +37,17 @@ const Description = styled.div`
 `
 
 const RecipeCard = ({ title, date, url, imageUrl, description }) => {
+  console.log(date)
+  const formattedDate = new Date(date)
+  const dateLabel = `${formattedDate.getDate()}-${formattedDate.getMonth()}-${formattedDate.getFullYear()}`
+
   return (
     <Link to={url}>
       <Card>
         <Image url={imageUrl} />
         <Info>
           <Title>{title}</Title>
-          <Date>({date})</Date>
+          <DateContainer>Published on {dateLabel}</DateContainer>
           <Description dangerouslySetInnerHTML={{__html: description}} />
         </Info>
       </Card>

@@ -7,7 +7,7 @@ const Header = styled.section`
 `
 
 const Title = styled.h1`
-  margin-bottom: 4px;
+  margin-bottom: 0;
 `
 
 const DateContainer = styled.div`
@@ -16,7 +16,6 @@ const DateContainer = styled.div`
 
 const RecipeHeader = ({ title, date }) => {
   const formattedDate = new Date(date)
-  console.log(date)
   const dateLabel = `${formattedDate.getDate()}-${formattedDate.getMonth()}-${formattedDate.getFullYear()}`
   return (
     <Header>

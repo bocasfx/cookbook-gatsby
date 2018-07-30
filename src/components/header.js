@@ -11,13 +11,13 @@ const Wrapper = styled.div`
 
 const Inner = styled.div`
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 700px;
   padding: 1rem 0;
   display: grid;
   grid-template-columns: 50% 50%;
 
-  @media (max-width: 1024px) {
-    margin: 0 32px;
+  @media (max-width: 832px) {
+    padding: 1rem 16px;
   }
 `
 
@@ -37,6 +37,18 @@ const H1 = styled.h1`
   }
 `
 
+const Title = styled.span`
+  &::after {
+    content: "${props => props.title}";
+  }
+
+  @media (max-width: 640px) {
+    &::after {
+      content: "${props => props.shortTitle}";
+    }
+  }
+`
+
 const renderSearchButton = location => {
   if (typeof window !== 'undefined' && window.location.pathname !== '/search') {
     return <SearchButton />
@@ -44,12 +56,14 @@ const renderSearchButton = location => {
   return null
 }
 
-const Header = ({ siteTitle }) => {
+const Header = ({ siteTitle, shortTitle }) => {
   return (
     <Wrapper>
       <Inner>
         <H1>
-          <Link to='/'>{siteTitle}</Link>
+          <Link to='/'>
+            <Title title={siteTitle} shortTitle='M!' />
+          </Link>
         </H1>
         {renderSearchButton()}
       </Inner>
@@ -58,7 +72,8 @@ const Header = ({ siteTitle }) => {
 }
 
 Header.propTypes = {
-  siteTitle: PropTypes.string
+  siteTitle: PropTypes.string,
+  shortTitle: PropTypes.string
 }
 
 export default Header

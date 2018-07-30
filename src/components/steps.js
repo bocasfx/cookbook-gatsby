@@ -13,8 +13,8 @@ const Steps = ({ steps }) => {
       <ol>
         {steps.map((step, idx) => {
           return (
-            <li>
-              <Step dangerouslySetInnerHTML={{ __html: step.step.html }} key={idx}/>
+            <li key={idx}>
+              <Step dangerouslySetInnerHTML={{ __html: step.step.html }} />
             </li>
           )
         })}
