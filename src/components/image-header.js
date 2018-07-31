@@ -32,7 +32,7 @@ class Images extends React.Component {
         contrast: 1,
         grayscale: 0
       })
-    }, 100)
+    }, 500)
   }
 
   render () {
