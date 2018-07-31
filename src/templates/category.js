@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import RecipeCard from '../components/recipe-card'
 
@@ -7,14 +7,14 @@ const Category = ({ data }) => {
     return <div>Nothing to see here. Move along...</div>
   }
   return (
-    <div>
+    <Fragment>
       {data.allPrismicRecipe.edges.map(({ node }, idx) => {
         const category = node.data.category.document[0].data.category.toLowerCase()
         const url = `/${category}/${node.uid}/`
         const imageUrl = node.data.images[0].image.url
         const date = node.last_publication_date
         const title = node.data.title.text
-        const description = node.data.description.text
+        const description = node.data.description.text.slice(0, 300) + '...'
         return (
           <RecipeCard
             url={url}
@@ -26,7 +26,7 @@ const Category = ({ data }) => {
           />
         )
       })}
-    </div>
+    </Fragment>
   )
 }
 

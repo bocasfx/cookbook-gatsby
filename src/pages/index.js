@@ -6,11 +6,15 @@ import CategoryCard from '../components/category-card'
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr [col-start]);
-  grid-auto-rows: 300px;
+  grid-auto-rows: 250px;
   grid-column-gap: 24px;
   row-gap: 24px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 832px) {
+    grid-template-columns: repeat(2, 1fr [col-start]);
+  }
+
+  @media (max-width: 640px) {
     grid-template-columns: 1fr [col-start];
   }
 `

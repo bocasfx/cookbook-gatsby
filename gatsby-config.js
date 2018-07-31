@@ -1,9 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: 'Munchtime'
+    title: 'Munchtime!',
+    shotrTitle: 'M!'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    `gatsby-plugin-react-next`,
     {
       resolve: 'gatsby-plugin-typography',
       options: {
@@ -33,15 +35,17 @@ module.exports = {
       resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
       options: {
         // Fields to index
-        fields: ['title', 'uid', 'category', 'description'],
+        fields: ['title', 'uid', 'category', 'description', 'imageUrl', 'date'],
         // How to resolve each field's value for a supported node type
         resolvers: {
-          // For any node of type MarkdownRemark, list how to resolve the fields' values
+          // For any node of type PrismicRecipe, list how to resolve the fields' values
           PrismicRecipe: {
             title: node => node.data.title.text,
             uid: node => node.uid,
             category: node => node.data.category.raw.uid,
-            description: node => node.data.description.text
+            description: node => node.data.description.text,
+            imageUrl: node => node.data.images[0].image.url,
+            date: node => node.last_publication_date
           }
         }
       }

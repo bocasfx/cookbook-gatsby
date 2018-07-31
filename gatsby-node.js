@@ -16,7 +16,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     createNodeField({
       node,
       name: 'slug',
-      value: slug,
+      value: slug
     })
   }
 }
@@ -75,6 +75,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         createPage({
           path: recipePath,
           component: path.resolve(`./src/templates/recipe.js`),
+          layout: 'recipe',
           context: {
             // Data passed to context is available in page queries as GraphQL variables.
             slug: node.uid

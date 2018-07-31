@@ -1,4 +1,4 @@
-body {
+html, body {
   color: #333;
 }
 
@@ -16,7 +16,7 @@ h1 {
 }
 
 section {
-  margin-top: 3rem;
+  margin-top: 64px;
 }
 
 img {

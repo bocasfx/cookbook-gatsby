@@ -7,10 +7,10 @@ import './index.css'
 
 const Children = styled.div`
   margin: 64px auto;
-  max-width: 960px;
+  max-width: 700px;
 
-  @media (max-width: 1024px) {
-    margin: 64px 32px;
+  @media (max-width: 832px) {
+    padding: 0 16px;
   }
 `
 
@@ -19,11 +19,11 @@ const Layout = ({ children, data }) => (
     <Helmet
       title={data.site.siteMetadata.title}
       meta={[
-        { name: 'description', content: 'Cookbook' },
+        { name: 'description', content: 'Munchtime!' },
         { name: 'keywords', content: 'cooking, cookbook, recipes, food' }
       ]}
     />
-    <Header siteTitle={data.site.siteMetadata.title} />
+    <Header siteTitle={data.site.siteMetadata.title} shortTitle={data.site.siteMetadata.shortTitle} />
     <Children>{children()}</Children>
   </div>
 )
