@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Index } from 'elasticlunr'
 import parse from 'url-parse'
@@ -77,7 +77,7 @@ export default class Search extends Component {
 
   render () {
     return (
-      <Fragment>
+      <div>
         <SearchHeader>
           <SearchLabel>Search:</SearchLabel>
           <SearchBox type='text' value={this.state.query} onChange={this.search} placeholder='Search for anything' />
@@ -96,7 +96,7 @@ export default class Search extends Component {
             />
           )
         })}
-      </Fragment>
+      </div>
     )
   }
 }

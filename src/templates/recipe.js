@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Ingredients from '../components/ingredients'
 import Steps from '../components/steps'
 import Footnotes from '../components/footnotes'
@@ -33,7 +33,7 @@ const Recipe = ({ data }) => {
   const footnotes = recipe.footnotes.html
 
   return (
-    <Fragment>
+    <div>
       <RecipeHeader title={title} date={date} />
       <ImageHeader url={images[0].image.url} />
       <Container>
@@ -42,7 +42,7 @@ const Recipe = ({ data }) => {
         {(steps && steps.length > 0) && <Steps steps={steps} />}
         {(footnotes && footnotes.length > 0) && <Footnotes footnotes={footnotes} />}
       </Container>
-    </Fragment>
+    </div>
   )
 }
 
