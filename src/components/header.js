@@ -1,5 +1,4 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
@@ -76,13 +75,3 @@ Header.propTypes = {
 }
 
 export default Header
-
-export const query = graphql`
-  query HeaderQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import Header from '../components/header'
 import styled from 'styled-components'
+import { StaticQuery, graphql } from 'gatsby'
 import './layout.css'
 
 const Children = styled.div`
@@ -15,22 +16,34 @@ const Children = styled.div`
 `
 
 const Layout = ({ children }) => (
-  <div>
-    <Helmet
-      title='Munchtime!'
-      meta={[
-        { name: 'description', content: 'Munchtime!' },
-        { name: 'keywords', content: 'cooking, cookbook, recipes, food' }
-      ]}
-    />
-    <Header />
-    <Children>{children}</Children>
-  </div>
+  <StaticQuery
+    query={graphql`
+      query LayoutQuery {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `}
+    render={data => (
+      <>
+        <Helmet
+          title={data.site.siteMetadata.title}
+          meta={[
+            { name: 'description', content: data.site.siteMetadata.title },
+            { name: 'keywords', content: 'cooking, cookbook, recipes, food' }
+          ]}
+        />
+        <Header />
+        <Children>{children}</Children>
+      </>
+    )}
+  />
 )
 
 Layout.propTypes = {
   children: PropTypes.func
-  // data: PropTypes.object
 }
 
 export default Layout

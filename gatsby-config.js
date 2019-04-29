@@ -5,6 +5,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-typography',
       options: {
@@ -29,7 +30,7 @@ module.exports = {
           // Your HTML serializer
         }
       }
-    },
+    }
     // {
     //   resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
     //   options: {
