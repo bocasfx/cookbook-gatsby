@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import Ingredients from '../components/ingredients'
 import Steps from '../components/steps'
 import Footnotes from '../components/footnotes'
@@ -7,6 +8,7 @@ import RecipeHeader from '../components/recipe-header'
 import Description from '../components/description'
 import ImageHeader from '../components/image-header'
 import styled from 'styled-components'
+import Layout from '../components/layout'
 
 const Container = styled.div`
   max-width: 700px;
@@ -33,16 +35,24 @@ const Recipe = ({ data }) => {
   const footnotes = recipe.footnotes.html
 
   return (
-    <div>
-      <RecipeHeader title={title} date={date} />
-      <ImageHeader url={images[0].image.url} />
-      <Container>
-        {(description && description.length > 0) && <Description description={description} />}
-        {(ingredients && ingredients.length > 0) && <Ingredients ingredients={ingredients} />}
-        {(steps && steps.length > 0) && <Steps steps={steps} />}
-        {(footnotes && footnotes.length > 0) && <Footnotes footnotes={footnotes} />}
-      </Container>
-    </div>
+    <Layout>
+      <div>
+        <RecipeHeader title={title} date={date} />
+        <ImageHeader url={images[0].image.url} />
+        <Container>
+          {description && description.length > 0 && (
+            <Description description={description} />
+          )}
+          {ingredients && ingredients.length > 0 && (
+            <Ingredients ingredients={ingredients} />
+          )}
+          {steps && steps.length > 0 && <Steps steps={steps} />}
+          {footnotes && footnotes.length > 0 && (
+            <Footnotes footnotes={footnotes} />
+          )}
+        </Container>
+      </div>
+    </Layout>
   )
 }
 
@@ -54,7 +64,7 @@ export default Recipe
 
 export const query = graphql`
   query RecipeQuery($slug: String!) {
-    allPrismicRecipe(filter: {uid: {eq: $slug}}) {
+    allPrismicRecipe(filter: { uid: { eq: $slug } }) {
       edges {
         node {
           last_publication_date

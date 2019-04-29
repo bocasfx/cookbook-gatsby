@@ -5,6 +5,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-typography',
       options: {
@@ -29,25 +30,25 @@ module.exports = {
           // Your HTML serializer
         }
       }
-    },
-    {
-      resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
-      options: {
-        // Fields to index
-        fields: ['title', 'uid', 'category', 'description', 'imageUrl', 'date'],
-        // How to resolve each field's value for a supported node type
-        resolvers: {
-          // For any node of type PrismicRecipe, list how to resolve the fields' values
-          PrismicRecipe: {
-            title: node => node.data.title.text,
-            uid: node => node.uid,
-            category: node => node.data.category.raw.uid,
-            description: node => node.data.description.text,
-            imageUrl: node => node.data.images[0].image.url,
-            date: node => node.last_publication_date
-          }
-        }
-      }
     }
+    // {
+    //   resolve: `@andrew-codes/gatsby-plugin-elasticlunr-search`,
+    //   options: {
+    //     // Fields to index
+    //     fields: ['title', 'uid', 'category', 'description', 'imageUrl', 'date'],
+    //     // How to resolve each field's value for a supported node type
+    //     resolvers: {
+    //       // For any node of type PrismicRecipe, list how to resolve the fields' values
+    //       PrismicRecipe: {
+    //         title: node => node.data.title.text,
+    //         uid: node => node.uid,
+    //         category: node => node.data.category.raw.uid,
+    //         description: node => node.data.description.text,
+    //         imageUrl: node => node.data.images[0].image.url,
+    //         date: node => node.last_publication_date
+    //       }
+    //     }
+    //   }
+    // }
   ]
 }

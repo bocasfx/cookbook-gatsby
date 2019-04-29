@@ -8,7 +8,7 @@ const Image = styled.div`
   background-position: center;
   width: 100%;
   height: 400px;
-  filter: contrast(${props => props.contrast}) grayscale(${props => props.grayscale});
+  /* filter: contrast(${props => props.contrast}) grayscale(${props => props.grayscale}); */
   transition: all 0.5s;
 `
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import { Index } from 'elasticlunr'
 import parse from 'url-parse'
@@ -101,10 +102,10 @@ export default class Search extends Component {
   }
 }
 
-export const query = graphql`
-  query SearchIndexExampleQuery {
-    siteSearchIndex {
-      index
-    }
-  }
-`
+// export const query = graphql`
+//   query SearchIndexExampleQuery {
+//     siteSearchIndex {
+//       index
+//     }
+//   }
+// `
