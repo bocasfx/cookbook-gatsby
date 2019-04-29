@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import Header from '../components/header'
 import styled from 'styled-components'
-import './index.css'
+import './layout.css'
 
 const Children = styled.div`
   margin: 64px auto;
@@ -14,33 +14,23 @@ const Children = styled.div`
   }
 `
 
-const Layout = ({ children, data }) => (
+const Layout = ({ children }) => (
   <div>
     <Helmet
-      title={data.site.siteMetadata.title}
+      title='Munchtime!'
       meta={[
         { name: 'description', content: 'Munchtime!' },
         { name: 'keywords', content: 'cooking, cookbook, recipes, food' }
       ]}
     />
-    <Header siteTitle={data.site.siteMetadata.title} shortTitle={data.site.siteMetadata.shortTitle} />
-    <Children>{children()}</Children>
+    <Header />
+    <Children>{children}</Children>
   </div>
 )
 
 Layout.propTypes = {
-  children: PropTypes.func,
-  data: PropTypes.object
+  children: PropTypes.func
+  // data: PropTypes.object
 }
 
 export default Layout
-
-export const query = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

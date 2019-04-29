@@ -1,7 +1,9 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import CategoryCard from '../components/category-card'
+import Layout from '../components/layout'
 
 const GridContainer = styled.div`
   display: grid;
@@ -24,20 +26,22 @@ const IndexPage = ({ data }) => {
     return null
   }
   return (
-    <GridContainer>
-      {data.allPrismicCategory.edges.map(({ node }, idx) => {
-        const category = node.data.category
-        const imageUrl = node.data.image.url
-        return (
-          <CategoryCard
-            category={category}
-            url={category.toLowerCase()}
-            imageUrl={imageUrl}
-            key={idx}
-          />
-        )
-      })}
-    </GridContainer>
+    <Layout>
+      <GridContainer>
+        {data.allPrismicCategory.edges.map(({ node }, idx) => {
+          const category = node.data.category
+          const imageUrl = node.data.image.url
+          return (
+            <CategoryCard
+              category={category}
+              url={category.toLowerCase()}
+              imageUrl={imageUrl}
+              key={idx}
+            />
+          )
+        })}
+      </GridContainer>
+    </Layout>
   )
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import Ingredients from '../components/ingredients'
 import Steps from '../components/steps'
 import Footnotes from '../components/footnotes'

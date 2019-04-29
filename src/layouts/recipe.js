@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import Header from '../components/header'
@@ -19,7 +20,7 @@ const Layout = ({ children, data }) => {
           { name: 'keywords', content: 'cooking, cookbook, recipes, food' }
         ]}
       />
-      <Header siteTitle={data.site.siteMetadata.title} shortTitle={data.site.siteMetadata.shortTitle} />
+      <Header />
       <Children>{children()}</Children>
     </div>
   )

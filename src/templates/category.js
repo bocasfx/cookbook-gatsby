@@ -1,4 +1,5 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import RecipeCard from '../components/recipe-card'
 
@@ -41,7 +42,7 @@ export const query = graphql`
     allPrismicRecipe(
       filter: {
         data: {
-          category: { document: { data: { category: { eq: $category } } } }
+          category: {document: {elemMatch: {data: {category: {eq: $category}}}}}
         }
       }
     ) {

@@ -1,8 +1,9 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import SearchButton from './search-button'
+// import SearchButton from './search-button'
 
 const Wrapper = styled.div`
   background: crimson;
@@ -48,31 +49,40 @@ const Title = styled.span`
   }
 `
 
-const renderSearchButton = location => {
-  if (typeof window !== 'undefined' && window.location.pathname !== '/search') {
-    return <SearchButton />
-  }
-  return null
-}
+// const renderSearchButton = location => {
+//   if (typeof window !== 'undefined' && window.location.pathname !== '/search') {
+//     return <SearchButton />
+//   }
+//   return null
+// }
 
-const Header = ({ siteTitle, shortTitle }) => {
+const Header = ({ data }) => {
   return (
     <Wrapper>
       <Inner>
         <H1>
           <Link to='/'>
-            <Title title={siteTitle} shortTitle='M!' />
+            <Title title='Munchtime!' shortTitle='M!' />
           </Link>
         </H1>
-        {renderSearchButton()}
+        {/* {renderSearchButton()} */}
       </Inner>
     </Wrapper>
   )
 }
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
-  shortTitle: PropTypes.string
+  data: PropTypes.object
 }
 
 export default Header
+
+export const query = graphql`
+  query HeaderQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`

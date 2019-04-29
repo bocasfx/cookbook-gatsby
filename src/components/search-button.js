@@ -4,7 +4,6 @@ import { push } from 'gatsby-link'
 
 const SearchBox = styled.div`
   position: relative;
-  display
 `
 
 const SearchInput = styled.input`
